@@ -1,10 +1,12 @@
 package com.zelling.fipe.models;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record BrandData(
         @JsonAlias("codigo") String code,
-        @JsonAlias("name") String name
+        @JsonAlias("nome") String name
 ) {
 
 }

@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ApiSearch {
-    public void search(String adress) {
+    public String search(String adress) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(adress))
@@ -17,7 +17,7 @@ public class ApiSearch {
 
         try{
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+            return response.body();
         } catch (IOException e) {
             System.out.println("Não foi possível completar a requisição");
             throw new RuntimeException(e);
