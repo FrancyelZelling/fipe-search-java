@@ -14,4 +14,10 @@ public class UserInput {
             return option;
         }
     }
+
+    public int brandCode(){
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        return option;
+    }
 }
