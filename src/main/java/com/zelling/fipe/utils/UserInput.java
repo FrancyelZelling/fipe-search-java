@@ -20,4 +20,9 @@ public class UserInput {
         scanner.nextLine();
         return option;
     }
+
+    public String vehicleName(){
+        String name = scanner.nextLine();
+        return name;
+    }
 }
