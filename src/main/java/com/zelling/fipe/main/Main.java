@@ -1,6 +1,7 @@
 package com.zelling.fipe.main;
 
 import com.zelling.fipe.models.Data;
+import com.zelling.fipe.models.VehicleData;
 import com.zelling.fipe.models.VehicleSimpleData;
 import com.zelling.fipe.models.YearListModels;
 import com.zelling.fipe.utils.ApiSearch;
@@ -8,6 +9,7 @@ import com.zelling.fipe.utils.Converter;
 import com.zelling.fipe.utils.UserInput;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,5 +52,20 @@ public class Main {
 
         anosDisponiveis.forEach(System.out::println);
 
+        System.out.println("\nDigite o código do veiculo desejado para obter os valores:");
+        var vehicleModelNumber = userInput.brandCode();
+
+        json = api.search(baseUrl + vehicleType + "/marcas/" + brandCode +"/modelos/" + vehicleModelNumber + "/anos/");
+        List<Data> vehicleModelsAvailable = converter.getDataAsList(json, Data.class);
+
+        List<VehicleData> vehicles = new ArrayList<>();
+
+        vehicleModelsAvailable.forEach(data -> {
+                    String newJson = api.search(baseUrl + vehicleType + "/marcas/" + brandCode +"/modelos/" + vehicleModelNumber + "/anos/" + data.code());
+                    VehicleData newVehicle = converter.getData(newJson, VehicleData.class);
+                    vehicles.add(newVehicle);
+                });
+
+        vehicles.forEach(System.out::println);
     }
 }

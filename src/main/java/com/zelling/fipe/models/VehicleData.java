@@ -9,7 +9,7 @@ public record VehicleData(
         @JsonAlias("Modelo") String model,
         @JsonAlias("Valor") String value,
         @JsonAlias("AnoModelo") String yearModel,
-        @JsonAlias("Combustível") String fuelType,
+        @JsonAlias("Combustivel") String fuelType,
         @JsonAlias("CodigoFipe") String fipeCode,
         @JsonAlias("MesReferencia") String monthRef
 ) {
